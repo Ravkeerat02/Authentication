@@ -1,4 +1,5 @@
 // importing shad
+import { LoginBtn } from "@/components/auth/loginBtn";
 import { Button } from "@/components/ui/button";
 // utils
 import { cn } from "@/lib/utils";
@@ -24,13 +25,11 @@ export default function Home() {
           Authentication app
         </p>
         <div>
-          <Button
-            variant="secondary"
-            size="lg"
-            className="justify-center items-center"
-          >
-            Sign in
-          </Button>
+          <LoginBtn>
+            <Button variant="secondary" size="lg">
+              Sign in
+            </Button>
+          </LoginBtn>
         </div>
       </div>
     </main>
