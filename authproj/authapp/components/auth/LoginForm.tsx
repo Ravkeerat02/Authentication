@@ -4,22 +4,22 @@ import { CardWrapper } from "./CardWrapper";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormItem, FormLabel, FormMessage } from "@components/form";
+import { Form, FormItem, FormLabel, FormMessage } from "components/ui/form";
 // DATA
-import { LoginSchema } from "@/schemas";
-import { FormField } from "../ui/form";
-// input 
-import { Input } from "@components/ui/input";
+import { LoginSchema } from "../../../schemas/index";
+import { FormControl, FormField } from "../ui/form";
+// input
+import { Input } from "../ui/input";
+
 export const LoginForm = () => {
-  const form =
-    useForm <
-    z.infer<typeof LoginSchema>({
-      resolver: zodResolver(LoginSchema),
-      defaultValue: {
-        email: "",
-        password: "",
-      },
-    });
+  const form = useForm<z.infer<typeof LoginSchema>>({
+    resolver: zodResolver(LoginSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
   return (
     <CardWrapper
       headerLabel="Welcome back"
@@ -28,15 +28,24 @@ export const LoginForm = () => {
       showSocial
     >
       <Form {...form}>
-        <form onSubmit={form.handlSubmit(() => {})} className="space-y-6">
-          {/* store the input */}
+        <form onSubmit={form.handleSubmit(() => {})}>
           <div className="space-y-4">
-            <FormField control={form.control} name="email" render={{ field } =>(
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <input {...field} type="email" />
-              </FormItem>
-            )} />
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      placeholder="janedoe@abc.com"
+                      type="email"
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
           </div>
         </form>
       </Form>

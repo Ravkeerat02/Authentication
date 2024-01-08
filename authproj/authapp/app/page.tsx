@@ -1,8 +1,8 @@
 // importing shad
-import { LoginBtn } from "@/components/auth/loginBtn";
-import { Button } from "@/components/ui/button";
+import { LoginBtn } from "components/auth/loginBtn";
+import { Button } from "components/ui/button";
 // utils
-import { cn } from "@/lib/utils";
+import { cn } from "lib/utils";
 // font
 import { Poppins } from "next/font/google";
 const font = Poppins({

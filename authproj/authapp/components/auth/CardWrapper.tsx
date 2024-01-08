@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
 import { Header } from "./header";
 import { Social } from "./Social";
 import { BackBtn } from "./BackBtn";
