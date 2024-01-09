@@ -4,12 +4,13 @@ import { CardWrapper } from "./CardWrapper";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormItem, FormLabel, FormMessage } from "components/ui/form";
+import { Form, FormItem, FormLabel, FormMessage } from "../ui/form";
 // DATA
-import { LoginSchema } from "../../../schemas/index";
+import { LoginSchema } from "../../schemas/Index";
 import { FormControl, FormField } from "../ui/form";
 // input
 import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 
 export const LoginForm = () => {
   const form = useForm<z.infer<typeof LoginSchema>>({
@@ -20,6 +21,11 @@ export const LoginForm = () => {
     },
   });
 
+  // submit function
+  const onSubmit = (values: z.infer<typeof LoginSchema>) => {
+    console.log(values);
+  };
+
   return (
     <CardWrapper
       headerLabel="Welcome back"
@@ -28,8 +34,9 @@ export const LoginForm = () => {
       showSocial
     >
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(() => {})}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <div className="space-y-4">
+            {/* email */}
             <FormField
               control={form.control}
               name="email"
@@ -46,7 +53,28 @@ export const LoginForm = () => {
                 </FormItem>
               )}
             />
+            {/* password */}
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Password</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      placeholder="******"
+                      // abc123
+                      type="password"
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
           </div>
+          <Button className="w-full  " type="submit">
+            Login
+          </Button>
         </form>
       </Form>
     </CardWrapper>
