@@ -1,9 +1,11 @@
 "use client";
 import { CardWrapper } from "./CardWrapper";
 // form
+
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState, useTransition } from "react";
 import { Form, FormItem, FormLabel, FormMessage } from "../ui/form";
 // DATA
 import { LoginSchema } from "../../schemas/Index";
@@ -13,8 +15,13 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
+import { login } from "../../actions/login";
 
 export const LoginForm = () => {
+  const [isPending, startTransition] = useTransition();
+  const [error, setError] = useState<string | undefined>("");
+  const [success, setSuccess] = useState<string | undefined>("");
+
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
@@ -25,7 +32,15 @@ export const LoginForm = () => {
 
   // submit function
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
-    console.log(values);
+    // on new and clear
+    setError("");
+    setSuccess("");
+    startTransition(() => {
+      login(values).then((data) => {
+        setError(data.error);
+        setSuccess(data.success);
+      });
+    });
   };
 
   return (
@@ -48,6 +63,7 @@ export const LoginForm = () => {
                   <FormControl>
                     <Input
                       {...field}
+                      disabled={isPending}
                       placeholder="janedoe@abc.com"
                       type="email"
                     />
@@ -65,6 +81,7 @@ export const LoginForm = () => {
                   <FormControl>
                     <Input
                       {...field}
+                      disabled={isPending}
                       placeholder="******"
                       // abc123
                       type="password"
@@ -75,9 +92,9 @@ export const LoginForm = () => {
             />
           </div>
           {/* error */}
-          <FormError message="" />
+          <FormError message={error} />
           {/* success */}
-          <FormSuccess message="" />
+          <FormSuccess message={success} />
           <Button className="w-full  " type="submit">
             Login
           </Button>
@@ -86,3 +103,6 @@ export const LoginForm = () => {
     </CardWrapper>
   );
 };
+function setError(error: any) {
+  throw new Error("Function not implemented.");
+}
