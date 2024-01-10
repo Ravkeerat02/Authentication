@@ -3,6 +3,7 @@ import * as z from "zod";
 import { RegisterSchema } from "../schemas/Index";
 import bcrypt from "bcrypt";
 import { db } from "../lib/db";
+import { getUserByEmail } from "../data/user";
 
 // register
 export const register = async (values: z.infer<typeof RegisterSchema>) => {
@@ -18,14 +19,7 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
   const { email, password, name } = validatedForm.data;
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  const existingUser = await db.user.findUnique({
-    where: {
-      email,
-    },
-  });
-  if (existingUser) {
-    return { error: "Email already exists" };
-  }
+  const existingUser = await getUserByEmail(email);
 
   await db.user.create({
     data: {
@@ -36,5 +30,6 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
   });
 
   // send token email
+
   return { success: "Creation successful " };
 };
