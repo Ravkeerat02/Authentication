@@ -25,7 +25,7 @@ export default function Home() {
           Authentication app
         </p>
         <div>
-          <LoginBtn>
+          <LoginBtn asChild={false}>
             <Button variant="secondary" size="lg">
               Sign in
             </Button>
