@@ -270,7 +270,7 @@
   dependencies:
     "@prisma/debug" "5.8.0"
 
-"@radix-ui/react-compose-refs@1.0.1":
+"@radix-ui/react-compose-refs@^1.0.1", "@radix-ui/react-compose-refs@1.0.1":
   version "1.0.1"
   resolved "https://registry.npmjs.org/@radix-ui/react-compose-refs/-/react-compose-refs-1.0.1.tgz"
   integrity sha512-fDSBgd44FKHa1FRMU59qBMPFcl2PZE+2nmqunj+BWFyYYjnhIDWL2ItDs3rrbJDQOtzt5nIebLCQc4QRfz6LJw==
