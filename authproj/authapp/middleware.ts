@@ -17,16 +17,23 @@ export default auth((req) => {
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 
+  // allow route
   if (isApiAuthRoute) {
     return null;
   }
-
+  // check route
   if (isAuthRoute) {
     if (isLoggedIn) {
       return Response.redirect(new URL(DEFAULT_LOIGIN_REDIRECT, nextUrl));
     }
     return null;
   }
+
+  if (!isLoggedIn && !isPublicRoute) {
+    return Response.redirect(new URL("/auth/login", nextUrl));
+  }
+  // allow routes
+  return null;
 });
 
 // wont be used to check public or pvt . rather to invoke the middleware fucntion
