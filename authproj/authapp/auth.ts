@@ -13,8 +13,9 @@ export const {
   callbacks: {
     // SESSION
     async session({ token, session }) {
-      console.log({ session: session });
-      return;
+      if (token.sub && session.user) {
+        session.user.id = token.sub;
+      }
     },
     // jwt
     async jwt({ token }) {
