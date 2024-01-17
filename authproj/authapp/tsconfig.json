@@ -4,7 +4,7 @@
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
-    "types": ["zod"],
+    "types": ["zod", "node", "bcryptjs"],
     "target": "es5",
     "noEmit": true,
     "esModuleInterop": true,
