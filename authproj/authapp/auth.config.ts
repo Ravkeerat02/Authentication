@@ -1,4 +1,8 @@
 import Credentials from "next-auth/providers/credentials";
+// github
+import Github from "next-auth/providers/github";
+// google
+import Google from "next-auth/providers/google";
 import { LoginSchema } from "./schemas/Index";
 import bcrypt from "bcryptjs";
 
@@ -7,6 +11,14 @@ import { getUserByEmail } from "./data/user";
 // triggers the adapter - middlware
 export default {
   providers: [
+    Github({
+      clientId: process.env.GITHUB_ID,
+      clientSecret: process.env.GITHUB_SECRET,
+    }),
+    Google({
+      clientId: process.env.GOOGLE_ID,
+      clientSecret: process.env.GOOGLE_SECRET,
+    }),
     Credentials({
       // need to compare the hashed passwrod for a successful login
       async authorize(credentials) {
