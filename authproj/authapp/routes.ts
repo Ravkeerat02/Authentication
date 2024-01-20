@@ -2,7 +2,7 @@
 export const publicRoutes = ["/"];
 
 // will redirect to the mention paged
-export const authRoutes = ["/auth/login", "/auth/register"];
+export const authRoutes = ["/auth/login", "/auth/register", "/auth/error"];
 
 //never block this route - should be accessible
 // used for api AUTH purposes
