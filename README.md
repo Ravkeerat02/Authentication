@@ -1,5 +1,9 @@
 # Authentication
 
+## Tutorial Link
+
+[Next Auth V5 - Advanced Guide (2024)](https://www.youtube.com/watch?v=1MTyCvS05V4&t=19368s)
+
 ## Tools, Languages, Frameworks
 
 - **UI Framework:** Shadcn UI
@@ -7,10 +11,6 @@
 - **Authentication:** Bcrypt
 - **Form Library:** Radix UI , Zod
 - **Styling:** Tailwind
-
-## Tutorial Link
-
-[Next Auth V5 - Advanced Guide (2024)](https://www.youtube.com/watch?v=1MTyCvS05V4&t=19368s)
 
 ## Getting Started
 
