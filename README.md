@@ -41,6 +41,3 @@
 
 The project follows a folder-based framework for organizing routes.
 
-## License
-
-This project is licensed under the [MIT License](LICENSE).
